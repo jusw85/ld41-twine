@@ -15,9 +15,12 @@ main: main.tw2
 	# twee2 build tmp_main.tw2 web/index.html
 	# rm tmp_main.tw2
 
+	## used for testing with local webserver
 	cp web/index.html index.html
-	rm -f web.zip
-	zip -r web web
+
+	## Package for upload
+	# rm -f web.zip
+	# zip -r web web
 
 clean:
 	rm -rf web

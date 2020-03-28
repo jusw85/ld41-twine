@@ -13,6 +13,7 @@ twineRogue = function() {
     var gridfont = "48px VT323";
     var div, c, ctx;
 
+    // http://roguebasin.roguelikedevelopment.org/index.php?title=Cellular_Automata_Method_for_Generating_Random_Cave-Like_Levels
     function generateMap(width, height) {
         var map = [];
         for (var y = 0; y < height; y++) {
