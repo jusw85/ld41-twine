@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css?family=VT323');
+
+/* font options */
+
+.passage {
+    font-family: VT323, monospace;
+    font-size: 36px;
+    line-height: 1.25;
+}
+
+/*
+ * copied from core.css and ui-bar.css from Sugarcube
+ * adapted for canvas
+ */
+
+#canvas {
+    z-index: 10;
+    margin: 2.5em;
+    transition: margin-left 200ms ease-in;
+}
+
+@media screen and (max-width: 1136px) {
+    #canvas {
+        margin-right: 1.5em;
+    }
+}
+
+#grid {
+    max-width: 54em;
+    margin: 0 auto;
+    display: block;
+}
+
+#canvas {
+    /*margin-left: 20em;*/
+    margin-left: 0em;
+}
+
+#ui-bar.stowed~#canvas {
+    margin-left: 4.5em;
+}
+
+@media screen and (max-width: 1136px) {
+    #canvas {
+        /*margin-left: 19em;*/
+        margin-left: 0em;
+    }
+    #ui-bar.stowed~#canvas {
+        margin-left: 3.5em;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #canvas {
+        margin-left: 3.5em;
+    }
+}
+
+/* hide save button */
+
+#menu-item-saves {
+    display: none;
+}
+
+/* transition effects */
+
+.macro-linkappend-insert,
+.macro-linkprepend-insert,
+.macro-linkreplace-insert,
+.macro-repeat-insert,
+.macro-timed-insert {
+    transition: opacity 200ms ease-in;
+}
+
+.macro-linkappend-in,
+.macro-linkprepend-in,
+.macro-linkreplace-in,
+.macro-repeat-in,
+.macro-timed-in {
+    opacity: 0;
+}

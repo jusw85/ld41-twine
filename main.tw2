@@ -1,0 +1,128 @@
+::StoryTitle
+Four Hours in Chernobyl
+
+::Twee2Settings[twee2]
+Twee2::build_config.story_ifid = '9D760F9E-0F76-4791-9614-D0C67537D7C5'
+Twee2::build_config.story_format = 'SugarCube2'
+# Twee2::build_config.story_format = 'Harlowe2'
+@story_start_name = 'intro'
+
+::StorySubtitle
+an exercise in Twine and Javascript
+
+::zzStoryAuthor
+Author
+
+::zzStoryInterface
+<div id="passages"></div>
+
+::zzStoryBanner
+Banner
+
+::zzStoryMenu
+[[Twine]]
+
+::zzStoryCaption
+Caption
+
+::zzStoryShare
+Share
+
+::zzPassageHeader
+Header
+
+::StoryInit
+<<script>>Engine.play("intro");<</script>>
+<<script>>UIBar.destroy();<</script>>
+
+::intro
+!! Four Hours in Chernobyl
+You glance down at the illuminated display of your military watch. The dim greenish glow on the display reads 2 a.m.
+
+You crest the pile of rubble in front of you. Under the dim light of the moon, you just about make out the yawning black hole leading down into the underground city of Chernobyl.
+
+Looking over the gauge on the oxygen canister by your side, you curse the leprous shopkeeper again for only willing to sell you four hours of oxygen. You don't blame him; after the collapse of the purification plants, clean oxygen is hard to come by.
+
+Pulling the mask over your head, you head down into the fumes to search for the relics you came to find.
+/*
+<span id="introNext1"></span>\
+there is no <<linkreplace spoon t8n>>spoon<<replace "#introNext1">><<timed 40ms t8n>><<script>>Story.get("intro2").text<</script>><</timed>><</replace>><</linkreplace>>
+<<script>>console.log(Story.get("intro2").text);<</script>>
+<<script>>var a = Story.get("intro2").text();<</script>>
+chernobyl nuclear reactor
+underground city
+You glance down at your Casio G-Shock wristwatch illuminated
+goggles
+radioactive
+fumes
+*/
+[[Next -> init]]
+
+::intro2
+The remains of the Chernobyl nuclear reactor.
+
+::init
+<<script>>twineRogue.hideCanvas();<</script>>\
+You have four hours to grab as many relics as possible and exit the dungeon (the entrance is also the exit).
+[[Start->main]]
+<<set $fuelLeft = 2000>>\
+<<set $treasure = 0>>\
+
+::main
+<span id="desc"></span>
+<<nobr>>
+<<script>>
+    twineRogue.showCanvas();
+    twineRogue.hookkeys(true);
+    //twineRogue.move(0,0);
+<</script>>
+<<link "north">><<script>>twineRogue.move(-1, 0);<</script>><</link>>,
+<<link "south">><<script>>twineRogue.move(1, 0);<</script>><</link>>,
+<<link "east">><<script>>twineRogue.move(0, 1);<</script>><</link>>,
+<<link "west">><<script>>twineRogue.move(0, -1);<</script>><</link>> (Arrow keys will work)<br>
+<div id="ascend"><<link "exit the dungeon" "exit">><</link>></div>
+oxygen: <span id="fuelLeft">$fuelLeft</span><br>
+treasure: <span id="treasure">$treasure</span>
+<div id="desc-none" hidden><<link "">><<replace "#desc">><<timed 40ms t8n>><</timed>><</replace>><</link>></div>
+<div id="desc-wall" hidden><<link "">><<replace "#desc">><<timed 40ms t8n>>You smash through the rubble with your pneumatic drill.<</timed>><</replace>><</link>></div>
+<div id="desc-pwall" hidden><<link "">><<replace "#desc">><<timed 40ms t8n>>The solid granite wall is too tough to tunnel through.<</timed>><</replace>><</link>></div>
+<div id="desc-treasure" hidden><<link "">><<replace "#desc">><<timed 40ms t8n>>You find a relic.<</timed>><</replace>><</link>></div>
+<div id="fuelLeft-none" hidden><<link "">><<replace "#fuelLeft">>$fuelLeft<</replace>><</link>></div>
+<div id="treasure-none" hidden><<link "">><<replace "#treasure">>$treasure<</replace>><</link>></div>
+
+/*
+<<script>>twineRogue.showCanvas();<</script>>
+<<link "hide">><<script>>twineRogue.hideCanvas();<</script>><</link>>,
+<<link "show">><<script>>twineRogue.showCanvas();<</script>><</link>><br><br>
+<<link "test self transition" "main">><</link>><br>
+<<link "test script">><<script>>
+    setup.myfunc();
+<</script>><</link>>
+*/
+<</nobr>>
+
+::exit
+<<script>>twineRogue.hideCanvas(); twineRogue.hookkeys(false); twineRogue.restart()<</script>>
+You exited the dungeon with $treasure relics!
+[[Restart?->init]]
+
+::nomorefuel
+<<script>>twineRogue.hideCanvas(); twineRogue.hookkeys(false); twineRogue.restart()<</script>>
+You ran out of oxygen.
+[[Restart?->init]]
+
+::StoryJS [script]
+var link = document.createElement("link");
+link.rel = "stylesheet";
+link.type = "text/css";
+link.href = "css/main.css";
+document.head.appendChild(link);
+
+var script = document.createElement('script');
+script.src = 'js/main.js';
+script.type = "application/javascript"
+document.head.appendChild(script);
+
+setup.myfunc = function() {
+    alert("ran myfunc!");
+}
