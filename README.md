@@ -20,3 +20,9 @@ Make
 ```
 make
 ```
+
+Host locally using http-server
+```
+npm -g install http-server
+hs -p 8081 -c-1
+```
