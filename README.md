@@ -11,7 +11,10 @@ Download and update twee2
 
 Edit twee2 path as required
 ```
-gem install twee2
+git clone https://github.com/Dan-Q/twee2
+cd twee2
+gem build
+gem install twee2-0.5.0.gem
 wget https://github.com/klembot/twinejs/archive/2.3.5.zip
 unzip -p 2.3.5.zip "twinejs-2.3.5/story-formats/sugarcube-2.30.0/format.js" > ~/.gem/ruby/2.7.0/gems/twee2-0.5.0/storyFormats/SugarCube2/format.js
 ```
